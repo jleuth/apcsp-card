@@ -13,9 +13,7 @@ wn.setup(width=800, height=600)
 
 # Create a trtl
 presidentTurtle = trtl.Turtle()
-presidentTurtle.hideturtle()
 branchTurtle = trtl.Turtle()
-branchTurtle.hideturtle()
 t = trtl.Turtle()
 t.hideturtle()
 t.shape("turtle") 
@@ -64,8 +62,11 @@ def askQuestions():
     while militaryBranch not in branches:
         militaryBranch = wn.textinput(f"Question 3", f"Please insert a valid branch (Navy, Army, Marines, Coast Guard, Air Force, Space Force)").capitalize()
     
-    #branchTurtle.addshape("")
+    wn.addshape(f"emblems/{militaryBranch}.gif")
     branchTurtle.shape(f"emblems/{militaryBranch}.gif")
+
+def drawExtra():
+    
 
 def genSpeech(name, favoritePresident, militaryBranch):
     makePrompt = f"Make a speech thanking {name}, a U.S. Military veteran who was in the {militaryBranch} branch in the style of {favoritePresident}. Limit your response to 1 paragraph"
