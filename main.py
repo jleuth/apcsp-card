@@ -14,6 +14,8 @@ wn.setup(width=800, height=600)
 # Create a trtl
 presidentTurtle = trtl.Turtle()
 branchTurtle = trtl.Turtle()
+podiumTurtle = trtl.Turtle()
+audienceTurtle = trtl.Turtle()
 t = trtl.Turtle()
 t.hideturtle()
 t.shape("turtle") 
@@ -38,11 +40,11 @@ presidents = [
 ]
 
 presidentVoices = {
-    "Trump":"somthing Trump",
-    "Biden":"somthing Biden",
-    "Obama":"somthing Obama",
-    "FDR":"somthing FDR",
-    "Kennedy":"somthing Kennedy",
+    "Trump": "somthing Trump",
+    "Biden": "somthing Biden",
+    "Obama": "somthing Obama",
+    "FDR": "somthing FDR",
+    "Kennedy": "somthing Kennedy",
 }
 
 def askQuestions():
@@ -57,6 +59,7 @@ def askQuestions():
     
     wn.addshape(f"presidents/{favoritePresident}.gif")
     presidentTurtle.shape(f"presidents/{favoritePresident}.gif")
+
     
     militaryBranch = wn.textinput("Question 3", "What branch of the military did you serve in? (Navy, Army, Marines, Coast Guard, Air Force, Space Force)").capitalize()
     while militaryBranch not in branches:
@@ -66,7 +69,12 @@ def askQuestions():
     branchTurtle.shape(f"emblems/{militaryBranch}.gif")
 
 def drawExtra():
-    
+    wn.addshape("podium.gif")
+    podiumTurtle.shape("podium.gif")
+
+    wn.addshape("audience.gif")
+    audienceTurtle.shape("audience.gif")
+
 
 def genSpeech(name, favoritePresident, militaryBranch):
     makePrompt = f"Make a speech thanking {name}, a U.S. Military veteran who was in the {militaryBranch} branch in the style of {favoritePresident}. Limit your response to 1 paragraph"
@@ -74,6 +82,15 @@ def genSpeech(name, favoritePresident, militaryBranch):
     #speech = eleven.generateSpeech(line, presidentVoices.get(favoritePresident))
 
 askQuestions()
+drawExtra()
+presidentTurtle.penup()
+presidentTurtle.teleport(-220, 150)
+
+audienceTurtle.penup()
+audienceTurtle.teleport(200, -100)
+
+podiumTurtle.penup()
+podiumTurtle.teleport(-220, 100)
 
 # Wait for user to close wn
 wn.mainloop()
