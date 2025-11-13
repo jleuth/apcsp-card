@@ -100,6 +100,7 @@ def drawExtra():
 def genSpeech(name, favoritePresident, militaryBranch):
     makePrompt = f"Make a super short speech thanking {name}, a U.S. Military veteran who was in the {militaryBranch} branch in the style of {favoritePresident}. Limit your response to 4 sentences and do not include any preamble, just the speech itself."
     line = openrouter.generateVoiceLine(makePrompt)
+    eleven.generateSpeech(line, presidentVoices.get(favoritePresident))
     
     textTurtle.speed(0)
     textTurtle.penup()
