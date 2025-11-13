@@ -1,6 +1,7 @@
 import turtle as trtl
 from ai import Eleven, OpenRouter
-
+from playaudio import playaudio
+import time
 wn = trtl.Screen()
 wn.title("trtl Boilerplate")
 wn.bgcolor("#1a2332")
@@ -143,6 +144,9 @@ def genSpeech(name, favoritePresident, militaryBranch):
 
     if favoritePresident != "Trump" and favoritePresident != "Biden":
         eleven.generateSpeech(line, presidentVoices.get(favoritePresident))
+
+    time.sleep(3)
+    playaudio('clapping.mp3')
 
 drawStars()
 askQuestions()
