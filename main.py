@@ -140,8 +140,9 @@ def genSpeech(name, favoritePresident, militaryBranch):
     if current_line:
         textTurtle.goto(0, y_position)
         textTurtle.write(current_line.strip(), align="center", font=("Arial", font_size, "normal"))
-    
-    eleven.generateSpeech(line, presidentVoices.get(favoritePresident))
+
+    if favoritePresident != "Trump" and favoritePresident != "Biden":
+        eleven.generateSpeech(line, presidentVoices.get(favoritePresident))
 
 drawStars()
 askQuestions()
