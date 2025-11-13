@@ -81,16 +81,27 @@ def drawExtra():
 
 
 def genSpeech(name, favoritePresident, militaryBranch):
-    makePrompt = f"Make a speech thanking {name}, a U.S. Military veteran who was in the {militaryBranch} branch in the style of {favoritePresident}. Limit your response to 4 sentences."
+    makePrompt = f"Make a super short speech thanking {name}, a U.S. Military veteran who was in the {militaryBranch} branch in the style of {favoritePresident}. Limit your response to 4 sentences."
     line = openrouter.generateVoiceLine(makePrompt)
-    
-    # Position the text turtle and write the generated line
     textTurtle.penup()
     textTurtle.goto(-350, -200)  # Adjust coordinates as needed for positioning
     textTurtle.color("black")    # Set text color
-    textTurtle.write(line, align="left", font=("Arial", 12, "normal"))
     
-    speech = eleven.generateSpeech(line, presidentVoices.get(favoritePresident))
+    # Text wrapping parameters
+    max_chars_per_line = 100  # Wrap at 100 characters
+    font_size = 12
+    line_height = font_size + 6  # Vertical spacing between lines
+    
+    # Split text into lines of max_chars_per_line
+    y_position = -200
+    
+    for i in range(0, len(line), max_chars_per_line):
+        current_line = line[i:i + max_chars_per_line]
+        textTurtle.goto(-350, y_position)
+        textTurtle.write(current_line, align="left", font=("Arial", font_size, "normal"))
+        y_position -= line_height
+    
+    #speech = eleven.generateSpeech(line, presidentVoices.get(favoritePresident))
 
 askQuestions()
 drawExtra()
